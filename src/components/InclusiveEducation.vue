@@ -11,22 +11,64 @@ import { RouterLink, RouterView } from "vue-router";
         assegurar o acesso, permanência e condições de aprendizagem para todas
         as pessoas, sem preconceitos e de forma a valorizar as diferenças. Ela é
         importante para permitir que os estudantes, ainda que apresentem
-        necessidades especiais, se desenvolvam no convívio de outros alunos de
-        uma escola regular, tornando-se parte integrante da sociedade.
+        necessidades especiais, se desenvolvam no convívio de outros estudantes
+        de uma escola regular, tornando-se parte integrante da sociedade.
       </p>
       <p>
         Mas um dos grandes desafios do ensino inclusivo é ter materiais, espaços
         e profissionais capacitados e treinados para atender a uma demanda que
         exige diversidade e maior atenção no dia a dia. Dentro dessa política de
         inclusão escolar, se faz necessário ter tecnologias assistivas que
-        facilitem a inclusão dos alunos e um projeto político-pedagógico
+        facilitem a inclusão dos estudantes e um projeto político-pedagógico
         inclusivo, que inclua espaços acolhedores de aprendizagem e planos de
-        desenvolvimento individuais dos alunos.
+        desenvolvimento individuais dos estudantes.
       </p>
       <p>
-        Por exemplo, a tabela a seguir, apresenta algumas tecnologias assistivas
-        que podem ser utilizadas por alunos cegos, a descrição de cada uma
-        dessas tecnologias e o como elas promovem a inclusão no ensino.
+        Por exemplo, para que os estudantes cegos possam aprender as sobre as
+        misturas de cores será necessário informar o conteúdo de cada célula da
+        tabela. Além disso, o professor poderá fornecer uma representação da
+        tabela utilizando texturas, ou seja, cada cor da tabela será simbolizada
+        por uma textura. Dessa forma, o estudante perceberá o atrito e decifrará
+        a cor associada aos níveis de cada atrito.
+      </p>
+      <v-table>
+        <thead>
+          <tr>
+            <th class="text-left">Cor 1</th>
+            <th class="text-left">Operação</th>
+            <th class="text-left">Cor 2</th>
+            <th class="text-left">Resultado</th>
+            <th class="text-left">Resultado Cor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="yellow">Amarelo</td>
+            <td>mais</td>
+            <td class="red">Vermelho</td>
+            <td>é igual a</td>
+            <td class="orange">Laranja</td>
+          </tr>
+          <tr>
+            <td class="yellow">Amarelo</td>
+            <td>mais</td>
+            <td class="blue">Azul</td>
+            <td>é igual a</td>
+            <td class="green">Verde</td>
+          </tr>
+          <tr>
+            <td class="red">Vermelho</td>
+            <td>mais</td>
+            <td class="blue">Azul</td>
+            <td>é igual a</td>
+            <td class="purple">Roxo</td>
+          </tr>
+        </tbody>
+      </v-table>
+      <p>
+        A tabela a seguir, apresenta algumas tecnologias assistivas que podem
+        ser utilizadas por estudantes cegos, a descrição de cada uma dessas
+        tecnologias e o como elas promovem a inclusão no ensino.
       </p>
       <v-table>
         <thead>
@@ -41,7 +83,7 @@ import { RouterLink, RouterView } from "vue-router";
             <td>Softwares de Leitura</td>
             <td>Softwares que convertem texto em áudio</td>
             <td>
-              Permitem que alunos com dificuldades visuais possam acessar o
+              Permitem que estudantes com dificuldades visuais possam acessar o
               conteúdo de maneira auditiva
             </td>
           </tr>
@@ -49,17 +91,17 @@ import { RouterLink, RouterView } from "vue-router";
             <td>Audiodescrição em Vídeos</td>
             <td>Adição de narração descritiva em vídeos</td>
             <td>
-              Torna o conteúdo visual mais acessível para alunos com deficiência
-              visual, permitindo que acompanhem o conteúdo
+              Torna o conteúdo visual mais acessível para estudantes com
+              deficiência visual, permitindo que acompanhem o conteúdo
             </td>
           </tr>
           <tr>
             <td>Bússolas Táteis</td>
             <td>Bússolas que permitem a leitura tátil de mapas</td>
             <td>
-              Facilitam o aprendizado de geografia para alunos com deficiência
-              visual, permitindo que sintam os mapas e compreendam melhor a
-              geografia
+              Facilitam o aprendizado de geografia para estudantes com
+              deficiência visual, permitindo que sintam os mapas e compreendam
+              melhor a geografia
             </td>
           </tr>
         </tbody>
@@ -81,8 +123,41 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
+.descricao-celula {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .v-table {
   border-color: black;
   border-style: solid;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.red {
+  background-color: rgb(255, 88, 88);
+}
+
+.blue {
+  background-color: rgb(65, 116, 255);
+}
+
+.green {
+  background-color: rgb(120, 255, 120);
+}
+
+.purple {
+  background-color: rgb(190, 0, 190);
 }
 </style>

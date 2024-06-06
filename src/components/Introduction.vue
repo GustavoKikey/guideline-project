@@ -1,14 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
   <div class="container">
     <v-container>
-      <h1>Lorem Ipsum Dolor Sit Amet</h1>
       <p>
-        O texto apresentará cinco temas: acessibilidade, usabilidade leis
-        relacionados com a acessibilidade, ensino inclusivo e acessibilidade em
+        O texto apresentará cinco temas: acessibilidade, usabilidade, leis
+        relacionadas com a acessibilidade, ensino inclusivo e acessibilidade em
         empresas.
       </p>
       <v-img :width="100" src="../src/assets/glossário.png"></v-img>
