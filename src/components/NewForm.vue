@@ -335,10 +335,24 @@ const startIdleTimer = () => {
     <v-container v-if="showResult == false && questionNumber == 6">
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
-        7. Quais as maiores dificuldades que você encontra para entender imagens
-        muito complexas ou com muitas informações?
+        6. A empresa Mozilla possui um conjunto de documentos chamado de
+        <span lang="en"
+          >MDN (Mozilla Developer Network) Web Docs - Accessibility</span
+        >
+        que discute quais ferramentas as pessoas com deficiência usam para
+        interagir com a web e como a acessibilidade faz parte do cotidiano
+        dessas pessoas.
       </p>
-      <v-row rows="12"> </v-row>
+      <v-row rows="12">
+        <v-radio-group inline v-model="selected[5]" :disabled="showReview">
+          <v-col cols="6">
+            <v-radio label="Verdadeiro" :value="true"></v-radio>
+          </v-col>
+          <v-col cols="6">
+            <v-radio label="Falso" :value="false"></v-radio>
+          </v-col>
+        </v-radio-group>
+      </v-row>
       <v-container v-if="showReview == true" class="review">
         <ReviewSix />
         <v-btn @click="continueConfirmation"
@@ -357,21 +371,10 @@ const startIdleTimer = () => {
     <v-container v-if="showResult == false && questionNumber == 7">
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
-        6. A empresa Mozilla possui um conjunto de documentos chamado de MDN
-        (Mozilla Developer Network) Web Docs - Accessibility que discute quais
-        ferramentas as pessoas com deficiência usam para interagir com a web e
-        como a acessibilidade faz parte do cotidiano dessas pessoas.
+        7. Quais as maiores dificuldades que você encontra para entender imagens
+        muito complexas ou com muitas informações?
       </p>
-      <v-row rows="12">
-        <v-radio-group inline v-model="selected[5]" :disabled="showReview">
-          <v-col cols="6">
-            <v-radio label="Verdadeiro" :value="true"></v-radio>
-          </v-col>
-          <v-col cols="6">
-            <v-radio label="Falso" :value="false"></v-radio>
-          </v-col>
-        </v-radio-group>
-      </v-row>
+      <v-row rows="12"> </v-row>
       <v-container v-if="showReview == true" class="review">
         <ReviewSix />
         <v-btn @click="continueConfirmation"
