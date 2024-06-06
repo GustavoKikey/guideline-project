@@ -30,9 +30,7 @@ import { RouterLink, RouterView } from "vue-router";
     </v-container>
     <v-row class="mt-0">
       <v-col cols="6" class="back">
-        <RouterLink to="accessibility"
-          ><v-btn>Página anterior</v-btn></RouterLink
-        >
+        <RouterLink to="graphics"><v-btn>Página anterior</v-btn></RouterLink>
       </v-col>
       <v-col cols="6" class="next">
         <RouterLink to="accessibilitymodel"

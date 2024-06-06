@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import("../components/Accessibility.vue"),
     },
     {
+      path: "/graphics",
+      name: "graphics",
+      component: () => import("../components/Graphics.vue"),
+    },
+    {
       path: "/usability",
       name: "usability",
       component: () => import("../components/Usability.vue"),

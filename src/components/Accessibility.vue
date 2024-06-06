@@ -47,7 +47,7 @@ import { RouterLink } from "vue-router";
         <RouterLink to="/"><v-btn>Página anterior</v-btn></RouterLink>
       </v-col>
       <v-col cols="6" class="next">
-        <RouterLink to="usability"><v-btn>Próxima página</v-btn></RouterLink>
+        <RouterLink to="graphics"><v-btn>Próxima página</v-btn></RouterLink>
       </v-col>
     </v-row>
   </div>
