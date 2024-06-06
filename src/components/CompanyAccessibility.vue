@@ -40,6 +40,10 @@ import { RouterLink, RouterView } from "vue-router";
       </p>
       <v-table>
         <thead>
+          <p class="hidden">
+            Descrição da tabela: Tabela Tipos de deficiência e taxa de
+            participação no mercado de trabalho
+          </p>
           <tr>
             <th class="text-left">Deficiência</th>
             <th class="text-left">Participação no mercado de trabalho</th>
@@ -67,6 +71,15 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
+.hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .v-table {
   border-color: black;
   border-style: solid;

@@ -33,6 +33,7 @@ import { RouterLink, RouterView } from "vue-router";
       </p>
       <v-table>
         <thead>
+          <p class="hidden">Descrição da tabela: Tabela Mistura de cores</p>
           <tr>
             <th class="text-left">Cor 1</th>
             <th class="text-left">Operação</th>
@@ -44,23 +45,23 @@ import { RouterLink, RouterView } from "vue-router";
         <tbody>
           <tr>
             <td class="yellow">Amarelo</td>
-            <td>mais</td>
+            <td>+</td>
             <td class="red">Vermelho</td>
-            <td>é igual a</td>
+            <td>=</td>
             <td class="orange">Laranja</td>
           </tr>
           <tr>
             <td class="yellow">Amarelo</td>
-            <td>mais</td>
+            <td>+</td>
             <td class="blue">Azul</td>
-            <td>é igual a</td>
+            <td>=</td>
             <td class="green">Verde</td>
           </tr>
           <tr>
             <td class="red">Vermelho</td>
-            <td>mais</td>
+            <td>+</td>
             <td class="blue">Azul</td>
-            <td>é igual a</td>
+            <td>=</td>
             <td class="purple">Roxo</td>
           </tr>
         </tbody>
@@ -72,6 +73,10 @@ import { RouterLink, RouterView } from "vue-router";
       </p>
       <v-table>
         <thead>
+          <p class="hidden">
+            Descrição da tabela: Tabela Exemplos de tecnologias assistivas
+            utilizadas por cegos
+          </p>
           <tr>
             <th><b>Tecnologias Assistivas</b></th>
             <th><b>Descrição</b></th>
@@ -80,25 +85,46 @@ import { RouterLink, RouterView } from "vue-router";
         </thead>
         <tbody>
           <tr>
-            <td>Softwares de Leitura</td>
-            <td>Softwares que convertem texto em áudio</td>
             <td>
+              <p class="hidden">Tecnologias Assistivas</p>
+              Softwares de Leitura
+            </td>
+            <td>
+              <p class="hidden">Descrição</p>
+              Softwares que convertem texto em áudio
+            </td>
+            <td>
+              <p class="hidden">Impacto no Ensino Inclusivo</p>
               Permitem que estudantes com dificuldades visuais possam acessar o
               conteúdo de maneira auditiva
             </td>
           </tr>
           <tr>
-            <td>Audiodescrição em Vídeos</td>
-            <td>Adição de narração descritiva em vídeos</td>
             <td>
+              <p class="hidden">Tecnologias Assistivas</p>
+              Audiodescrição em Vídeos
+            </td>
+            <td>
+              <p class="hidden">Descrição</p>
+              Adição de narração descritiva em vídeos
+            </td>
+            <td>
+              <p class="hidden">Impacto no Ensino Inclusivo</p>
               Torna o conteúdo visual mais acessível para estudantes com
               deficiência visual, permitindo que acompanhem o conteúdo
             </td>
           </tr>
           <tr>
-            <td>Bússolas Táteis</td>
-            <td>Bússolas que permitem a leitura tátil de mapas</td>
             <td>
+              <p class="hidden">Tecnologias Assistivas</p>
+              Bússolas Táteis
+            </td>
+            <td>
+              <p class="hidden">Descrição</p>
+              Bússolas que permitem a leitura tátil de mapas
+            </td>
+            <td>
+              <p class="hidden">Impacto no Ensino Inclusivo</p>
               Facilitam o aprendizado de geografia para estudantes com
               deficiência visual, permitindo que sintam os mapas e compreendam
               melhor a geografia
@@ -123,7 +149,7 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
-.descricao-celula {
+.hidden {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
