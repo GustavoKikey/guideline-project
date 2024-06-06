@@ -81,7 +81,7 @@ function showResults() {
     showResult.value = true;
     showReview.value = true;
     window.removeEventListener("mousemove", resetIdleTimer);
-    window.removeEventListener("keypress", resetIdleTimer);
+    window.removeEventListener("keydown", resetIdleTimer);
     clearTimeout(idleTimer);
   }
 }
@@ -91,7 +91,7 @@ function continueConfirmation() {
   showResult.value = true;
   showReview.value = true;
   window.removeEventListener("mousemove", resetIdleTimer);
-  window.removeEventListener("keypress", resetIdleTimer);
+  window.removeEventListener("keydown", resetIdleTimer);
   clearTimeout(idleTimer);
 }
 
@@ -108,7 +108,7 @@ const resetIdleTimer = () => {
 
 const startIdleTimer = () => {
   window.addEventListener("mousemove", resetIdleTimer);
-  window.addEventListener("keypress", resetIdleTimer);
+  window.addEventListener("keydown", resetIdleTimer);
   idleTimer = setTimeout(() => {
     dialogVisible.value = true;
   }, maxIdleTime);
