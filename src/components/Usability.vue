@@ -4,6 +4,20 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <div class="container">
+    <v-row class="mt-0">
+      <v-col cols="6" class="back"> </v-col>
+      <v-col cols="6" class="next">
+        <RouterLink to="lawinformation">Ajuda</RouterLink>
+      </v-col>
+    </v-row>
+    <v-row class="mt-0 mb-2">
+      <v-col cols="6" class="back"> </v-col>
+      <v-col cols="6" class="next">
+        <RouterLink to="/">Página Inicial</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="accessibility">Acessibilidade</RouterLink>
+      </v-col>
+    </v-row>
     <v-container>
       <h1>Usabilidade</h1>
       <p>
@@ -41,4 +55,8 @@ import { RouterLink, RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.v-container {
+  margin-top: 0;
+}
+</style>

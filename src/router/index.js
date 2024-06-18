@@ -53,6 +53,11 @@ const router = createRouter({
       name: "end",
       component: () => import("../components/End.vue"),
     },
+    {
+      path: "/lawinformation",
+      name: "lawinformation",
+      component: () => import("../components/LawInformation.vue"),
+    },
   ],
 });
 
