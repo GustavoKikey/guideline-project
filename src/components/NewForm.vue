@@ -13,23 +13,22 @@ let showResult = ref(false);
 let showReview = ref(false);
 let allQuestionsAnswered = ref(false);
 let questionNumber = ref(0);
+let dialogNumber = ref(0);
 const dialog = ref(false);
-const confirmation = ref(false);
 
 const openDialog = () => {
   dialog.value = true;
+  dialogNumber.value = 1;
 };
 
 const closeDialog = () => {
   dialog.value = false;
+  dialogNumber.value = 0;
 };
 
 const openConfirmation = () => {
-  confirmation.value = true;
-};
-
-const closeConfirmation = () => {
-  confirmation.value = false;
+  dialog.value = true;
+  dialogNumber.value = 2;
 };
 
 function calculateScore(i) {
@@ -87,7 +86,7 @@ function showResults() {
 }
 
 function continueConfirmation() {
-  closeConfirmation();
+  closeDialog();
   showResult.value = true;
   showReview.value = true;
   window.removeEventListener("mousemove", resetIdleTimer);
@@ -96,7 +95,7 @@ function continueConfirmation() {
 }
 
 const idleTime = ref(0);
-const maxIdleTime = 30000;
+const maxIdleTime = 60000;
 const dialogVisible = ref(false);
 let idleTimer;
 
@@ -113,44 +112,93 @@ const startIdleTimer = () => {
     dialogVisible.value = true;
   }, maxIdleTime);
 };
+
+const getUnansweredQuestions = () => {
+  let unansweredQuestions = [];
+  for (let i = 0; i < 6; i++) {
+    if (selected.value[i] === undefined) {
+      unansweredQuestions.push(i + 1);
+    }
+  }
+  return unansweredQuestions;
+};
+
+const goToQuestion = (question) => {
+  questionNumber.value = question;
+  closeDialog();
+};
 </script>
 
 <template>
   <div class="container">
-    <v-btn @click="openDialog" v-if="showReview == false && questionNumber == 0"
-      >Configuração de atualização da página</v-btn
-    >
-    <v-dialog role="dialog" tabindex="-1" v-model="dialog" max-width="500px">
-      <v-card>
-        <v-card-title>
-          Configuração de atualização da página
-          <v-spacer></v-spacer>
-        </v-card-title>
-        <v-card-text>
-          Atualização automática:
+    <v-row v-if="questionNumber == 0" class="mt-0 mb-2">
+      <v-col cols="12" class="next">
+        <RouterLink to="introduction">Página Inicial</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="accessibility">Acessibilidade</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="usability">Usabilidade</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="accessibilitymodel">eMAG</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="inclusiveeducation">Ensino Inclusivo</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="companyaccessibility">Empresas</RouterLink>
+      </v-col>
+    </v-row>
+
+    <v-row class="mt-0 mb-2">
+      <v-col cols="12" class="back">
+        Configuração &nbsp;>&nbsp;
+        <span @click="openDialog">Atualização da página</span>
+      </v-col>
+    </v-row>
+    <v-container v-if="dialogNumber == 1 && dialog == true">
+      <h2>Configuração de atualização da página</h2>
+      <v-spacer></v-spacer>
+      <p>Atualização automática:</p>
+      <v-row rows="12">
+        <v-col cols="12">
           <v-select
             label="Escolha uma opção"
             :items="['Ativado', 'Desativado']"
           ></v-select>
+        </v-col>
+      </v-row>
+      <v-row rows="12">
+        <v-col cols="6">
           <v-btn @click="closeDialog"> Salvar </v-btn>
+        </v-col>
+        <v-col cols="6">
           <v-btn @click="closeDialog"> Cancelar </v-btn>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <v-dialog v-model="confirmation" max-width="500px">
-      <v-card>
-        <v-card-title>
-          Aviso
-          <v-spacer></v-spacer>
-        </v-card-title>
-        <v-card-text>
-          Você não respondeu todas as perguntas. Deseja continuar mesmo assim?
-          <v-btn @click="closeConfirmation"> Voltar </v-btn>
-          <v-btn @click="continueConfirmation"> Continuar </v-btn>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+    <v-container v-if="dialogNumber == 2 && dialog == true">
+      <p>Você não respondeu todas as questões. Deseja continuar mesmo assim?</p>
+      <p>As seguintes questões não foram respondidas:</p>
+      <ul>
+        <li
+          class="li"
+          v-for="question in getUnansweredQuestions()"
+          :key="question"
+        >
+          Questão {{ question }}
+          <v-btn class="ml-5" @click="goToQuestion(question)"
+            >Ir para questão</v-btn
+          >
+        </li>
+      </ul>
+      <v-row class="mt-0" v-if="showReview == false">
+        <v-col cols="6" class="back">
+          <v-btn @click="closeDialog">Voltar</v-btn>
+        </v-col>
+        <v-col cols="6" class="next">
+          <v-btn @click="continueConfirmation">Continuar</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <v-dialog v-model="dialogVisible" max-width="500px">
       <v-card>
@@ -168,7 +216,9 @@ const startIdleTimer = () => {
       </v-card>
     </v-dialog>
 
-    <v-container v-if="showResult == false && questionNumber == 0">
+    <v-container
+      v-if="showResult == false && questionNumber == 0 && dialog == false"
+    >
       <h1>Questionário</h1>
       <p>
         Esse questionário contém 6 perguntas objetivas baseadas nos conteúdos
@@ -180,7 +230,9 @@ const startIdleTimer = () => {
       >
     </v-container>
 
-    <v-container v-if="showResult == false && questionNumber == 1">
+    <v-container
+      v-if="showResult == false && questionNumber == 1 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         1. A acessibilidade não é considerada como uma sub-característica de
@@ -206,7 +258,9 @@ const startIdleTimer = () => {
         >Próxima questão</v-btn
       >
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 2">
+    <v-container
+      v-if="showResult == false && questionNumber == 2 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         2. O Modelo de Acessibilidade em Governo Eletônico (eMAG) apresenta
@@ -238,7 +292,9 @@ const startIdleTimer = () => {
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 3">
+    <v-container
+      v-if="showResult == false && questionNumber == 3 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         3. A Lei 10.146 institui a lei brasileira de inclusão da pessoa com
@@ -269,7 +325,9 @@ const startIdleTimer = () => {
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 4">
+    <v-container
+      v-if="showResult == false && questionNumber == 4 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         4. O Modelo de Acessibilidade em Governo Eletônico (eMAG) não exclui
@@ -300,7 +358,9 @@ const startIdleTimer = () => {
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 5">
+    <v-container
+      v-if="showResult == false && questionNumber == 5 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         5. Acessibilidade pode ser definida como o grau em que um sistema pode
@@ -332,7 +392,9 @@ const startIdleTimer = () => {
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 6">
+    <v-container
+      v-if="showResult == false && questionNumber == 6 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         6. A empresa Mozilla possui um conjunto de documentos chamado de
@@ -368,7 +430,9 @@ const startIdleTimer = () => {
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-if="showResult == false && questionNumber == 7">
+    <v-container
+      v-if="showResult == false && questionNumber == 7 && dialog == false"
+    >
       <p class="hidden-description">Questão objetiva com uma única opção</p>
       <p>
         7. Quais as maiores dificuldades que você encontra para entender imagens
@@ -393,7 +457,7 @@ const startIdleTimer = () => {
     <v-row>
       <v-col cols="12" class="mt-4"> </v-col>
     </v-row>
-    <v-container v-if="showResult == true">
+    <v-container v-if="showResult == true && dialog == false">
       <h1 class="quizresult">Resultado do Questionário</h1>
       <v-row>
         <p v-if="calculateScore(0) === false">
@@ -464,7 +528,9 @@ const startIdleTimer = () => {
     </v-container>
     <v-row class="mt-0">
       <v-col
-        v-if="!showResult && showReview == false && questionNumber == 0"
+        v-if="
+          !showResult && showReview == false && questionNumber == 0 && !dialog
+        "
         cols="6"
         class="back"
       >
@@ -483,6 +549,14 @@ const startIdleTimer = () => {
 </template>
 
 <style scoped>
+.li {
+  margin-bottom: 20px;
+}
+
+.v-select {
+  width: 300px;
+}
+
 .v-radio {
   width: 200px;
 }
