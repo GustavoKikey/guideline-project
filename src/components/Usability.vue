@@ -13,7 +13,7 @@ import { RouterLink, RouterView } from "vue-router";
     <v-row class="mt-0 mb-2">
       <v-col cols="6" class="back"> </v-col>
       <v-col cols="6" class="next">
-        <RouterLink to="/">Página Inicial</RouterLink>
+        <RouterLink to="introduction">Página Inicial</RouterLink>
         &nbsp;>&nbsp;
         <RouterLink to="accessibility">Acessibilidade</RouterLink>
       </v-col>
@@ -27,7 +27,7 @@ import { RouterLink, RouterView } from "vue-router";
         proposta por Shackel, que descreveu a usabilidade de um produto como "a
         capacidade de ser usado por humanos com facilidade e eficácia".
       </p>
-      <h1>Legislação</h1>
+      <h2>Legislação</h2>
       <p>
         A Lei 13.146 estabelece a Lei Brasileira de Inclusão da Pessoa com
         Deficiência (Estatuto da Pessoa com Deficiência) e tem como objetivo

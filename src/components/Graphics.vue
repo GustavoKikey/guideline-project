@@ -4,6 +4,11 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div class="container">
+    <v-row class="mt-0 mb-2">
+      <v-col cols="12" class="next">
+        <RouterLink to="introduction">Página Inicial</RouterLink>
+      </v-col>
+    </v-row>
     <v-container>
       <p>
         Embora a acessibilidade seja muito importante, ainda é necessário muito

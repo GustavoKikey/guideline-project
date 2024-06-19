@@ -4,6 +4,19 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <div class="container">
+    <v-row class="mt-0 mb-2">
+      <v-col cols="12" class="next">
+        <RouterLink to="introduction">Página Inicial</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="accessibility">Acessibilidade</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="usability">Usabilidade</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="accessibilitymodel">eMAG</RouterLink>
+        &nbsp;>&nbsp;
+        <RouterLink to="inclusiveeducation">Ensino Inclusivo</RouterLink>
+      </v-col>
+    </v-row>
     <v-container>
       <h1>Acessibilidade em empresas</h1>
       <p>

@@ -4,6 +4,11 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div class="container">
+    <v-row class="mt-0 mb-2">
+      <v-col cols="12" class="next">
+        <RouterLink to="introduction">Página Inicial</RouterLink>
+      </v-col>
+    </v-row>
     <v-container>
       <h1>Acessibilidade</h1>
       <p>
@@ -14,13 +19,13 @@ import { RouterLink } from "vue-router";
         requisito deve ser obedecido quando um produto ou sistema é usado por
         pessoas com deficiências específicas para atingir seus objetivos de
         forma
-        <RouterLink to="/"
+        <RouterLink to="introduction"
           ><a href="https://emag.governoeletronico.gov.br/"
             >eficaz</a
           ></RouterLink
         >
         e com
-        <RouterLink to="/"
+        <RouterLink to="introduction"
           ><a href="https://emag.governoeletronico.gov.br/"
             >eficiência</a
           ></RouterLink
@@ -44,7 +49,9 @@ import { RouterLink } from "vue-router";
 
     <v-row class="mt-0">
       <v-col cols="6" class="back">
-        <RouterLink to="/"><v-btn>Página anterior</v-btn></RouterLink>
+        <RouterLink to="introduction"
+          ><v-btn>Página anterior</v-btn></RouterLink
+        >
       </v-col>
       <v-col cols="6" class="next">
         <RouterLink to="graphics"><v-btn>Próxima página</v-btn></RouterLink>
@@ -53,4 +60,8 @@ import { RouterLink } from "vue-router";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.v-container {
+  margin-top: 0;
+}
+</style>

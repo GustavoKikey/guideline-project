@@ -1,16 +1,16 @@
 <script>
-import Introduction from "@/components/Introduction.vue";
+import Home from "@/components/Home.vue";
 
 export default {
   components: {
-    Introduction,
+    Home,
   },
 };
 </script>
 
 <template>
   <div>
-    <Introduction />
+    <Home />
   </div>
 </template>
 

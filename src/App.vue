@@ -35,6 +35,10 @@ p {
   font-size: 18px;
 }
 
+.v-container {
+  margin-top: 0;
+}
+
 .next {
   display: flex;
   justify-content: end;
