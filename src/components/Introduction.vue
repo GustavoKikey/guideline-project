@@ -5,6 +5,7 @@ import { RouterLink } from "vue-router";
 <template>
   <div class="container">
     <v-container>
+      <h1>Conceitos básicos sobre acessibilidade</h1>
       <p>
         O texto apresentará cinco temas: acessibilidade, usabilidade, leis
         relacionadas com a acessibilidade, ensino inclusivo e acessibilidade em
