@@ -49,11 +49,6 @@ const router = createRouter({
       component: () => import("../components/NewForm.vue"),
     },
     {
-      path: "/review-1",
-      name: "review-1",
-      component: () => import("../components/ReviewOne.vue"),
-    },
-    {
       path: "/end",
       name: "end",
       component: () => import("../components/End.vue"),
