@@ -25,7 +25,7 @@ import { RouterLink, RouterView } from "vue-router";
         alt="Ilustração para representar a construção de um site acessível. O primeiro plano apresenta uma pessoa construindo um site. 
         O segundo plano da ilustração mostra um quadro com as tarefas que essa pessoa deverá realizar para criar o site, as tarefas que ela está realizando e 
         as tarefas que ela já finalizou"
-        src="public/imagem_segundo_plano.png"
+        src="/imagem_segundo_plano.png"
       ></v-img>
       <p>
         O Modelo de Acessibilidade em Governo Eletrônico tem o compromisso de

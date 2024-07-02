@@ -43,7 +43,7 @@ import { RouterLink } from "vue-router";
         representando a importância da biblioteca fornecer livros em braille e audiolivros. É um mulher branca, possui cabelo castanho com algumas mechas vermelhas e 
         está usando uma blusa amarela e short e sapatos rosas. A quinta personagem é uma mulher branca, cega, possui cabelo louro e está utilizando uma blusa branca. 
         Ela está sentada e sobre a mesa possui um livro em braille, que a personagem está lendo. Ao seu lado há um cachorro amarelo, que é o seu cão guia."
-        src="/public/maurc3adcio-de-sousa-5.jpg"
+        src="/maurc3adcio-de-sousa-5.jpg"
       ></v-img>
     </v-container>
 
