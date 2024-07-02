@@ -30,7 +30,7 @@ import { RouterLink } from "vue-router";
           para tornar os processos da minha área mais acessíveis e inclusivos e possui os valores 2,9 com seminário e 2,2 sem seminário.  
           A quinta barra é a pergunta costumo ouvir a pauta de acessibilidade e inclusão nas reuniões da minha área e possui os valores 2,6 com seminário e 1,7 sem seminário. 
           A sexta barra é a pergunta Minha área já promoveu mudanças para melhorar a acessibilidade e inclusão e possui os valores 2,7 com seminário e 1,5 sem seminário."
-        src="../src/assets/grafico_barra.png"
+        src="/public/grafico_barra.png"
       ></v-img>
       <p>
         A acessibilidade também deve ser considerada no ambiente de trabalho.
@@ -44,7 +44,7 @@ import { RouterLink } from "vue-router";
         que representa a deficiência física, é 44%. O valor da fatia verde, que representa a deficiência visual, é 27%. O valor da fatia amarela, 
         que representa a deficiência auditiva, é 21%. O valor da fatia laranja, que representa a deficiência intelectual, é 7%. O valor da fatia rosa, 
         que representa a deficiência múltipla, é 1%."
-        src="../src/assets/grafico_pizza.png"
+        src="/public/grafico_pizza.png"
       ></v-img>
     </v-container>
 
