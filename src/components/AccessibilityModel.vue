@@ -51,6 +51,14 @@ import { RouterLink, RouterView } from "vue-router";
         O conteúdo do link anterior aborda o processo para desenvolver um site
         acessível, recomendações de acessibilidade e práticas desaconselhadas"
       </p>
+      <a
+        aria-describedby="descricao-link"
+        href="https://emag.governoeletronico.gov.br/"
+        >https://emag.governoeletronico.gov.br/</a
+      >
+      <p class="descricao-link">
+        Modelo de Acessibilidade em Governo Eletrônico
+      </p>
     </v-container>
     <v-row class="mt-0">
       <v-col cols="6" class="back">
