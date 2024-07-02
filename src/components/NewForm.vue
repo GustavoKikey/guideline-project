@@ -362,10 +362,7 @@ const items = ref([
           </v-btn>
           <div v-if="dialogVisible">
             <audio ref="audioPlayer" controls autoplay style="display: none">
-              <source
-                src="/home/kikey/guidelines-project/src/assets/lofi.mp3"
-                type="audio/mpeg"
-              />
+              <source src="/src/assets/lofi.mp3" type="audio/mpeg" />
               Seu navegador não suporta o elemento de áudio.
             </audio>
             <div v-if="dialogVisible" class="volume-controls">
