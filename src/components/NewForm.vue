@@ -1,70 +1,106 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import { ref } from "vue";
-import ReviewOne from "@/components/ReviewOne.vue";
+import { RouterLink, RouterView } from "vue-router"; // Importa componentes do Vue Router para navegação
+import { ref, watch } from "vue"; // Importa ref para criar variáveis reativas e watch para observar mudanças
+import ReviewOne from "@/components/ReviewOne.vue"; // Importa componentes de revisão para cada questão
 import ReviewTwo from "@/components/ReviewTwo.vue";
 import ReviewThree from "@/components/ReviewThree.vue";
 import ReviewFour from "@/components/ReviewFour.vue";
 import ReviewFive from "@/components/ReviewFive.vue";
 import ReviewSix from "@/components/ReviewSix.vue";
 
-const selected = ref([]);
-let showResult = ref(false);
-let showReview = ref(false);
-let allQuestionsAnswered = ref(false);
-let questionNumber = ref(0);
-let dialogNumber = ref(0);
-const dialog = ref(false);
+// Variáveis Reativas
+const selected = ref([]); // Array para armazenar as respostas selecionadas
+let showResult = ref(false); // Controla a exibição da página de resultados
+let showReview = ref(false); // Controla a exibição das revisões das questões
+let allQuestionsAnswered = ref(false); // Indica se todas as questões foram respondidas
+let questionNumber = ref(0); // Número da questão atual
+let dialogNumber = ref(0); // Número do diálogo aberto (1 para configurações, 2 para confirmação)
+let quiz = ref(false); // Indica se o questionário está em andamento
+let showMenu = ref(true); // Controla a exibição do menu de navegação
+const dialog = ref(false); // Controla a exibição do diálogo (modal)
 
+// Variáveis para controle do temporizador de inatividade e do diálogo de aviso
+const idleTime = ref(0);
+const maxIdleTime = 120000;
+const dialogVisible = ref(false);
+let idleTimer;
+
+// Variáveis para controle de volume da música
+const volume = ref(0.2); // Volume inicial da música (20%)
+const audioPlayer = ref(null); // Referência para o elemento de áudio
+
+// Funções para controlar o diálogo (modal)
 const openDialog = () => {
   dialog.value = true;
-  dialogNumber.value = 1;
+  dialogNumber.value = 1; // Abre o diálogo de configurações
 };
 
 const closeDialog = () => {
   dialog.value = false;
-  dialogNumber.value = 0;
+  dialogNumber.value = 0; // Fecha o diálogo
 };
 
 const openConfirmation = () => {
   dialog.value = true;
-  dialogNumber.value = 2;
+  dialogNumber.value = 2; // Abre o diálogo de confirmação
 };
 
+// Calcula a pontuação para uma determinada questão
 function calculateScore(i) {
   let answer = selected.value[i];
   return answer;
 }
 
+// Reinicia o questionário para o estado inicial
 function resetQuiz() {
   selected.value = [];
   showResult.value = false;
   showReview.value = false;
   questionNumber.value = 0;
+  showMenu.value = true;
 }
 
+// Inicia o questionário
 function startQuiz() {
-  questionNumber.value = 1;
-  startIdleTimer();
+  questionNumber.value = 1; // Vai para a primeira questão
+  quiz = true;
+  startIdleTimer(); // Inicia o temporizador de inatividade
 }
 
+// Finaliza o questionário e exibe os resultados
+function endQuiz() {
+  quiz = false;
+  showResult.value = true;
+  showReview.value = true;
+  window.removeEventListener("mousemove", resetIdleTimer); // Remove os ouvintes de eventos
+  window.removeEventListener("keydown", resetIdleTimer);
+  clearTimeout(idleTimer); // Limpa o temporizador
+}
+
+// Navegação entre as questões
 function nextQuestion() {
   questionNumber.value++;
+  showMenu.value = true;
 }
 
 function previousQuestion() {
   questionNumber.value--;
+  showMenu.value = true;
 }
 
+// Função para exibir a revisão de uma questão específica
 function reviewQuestion(question) {
   questionNumber.value = question;
   showResult.value = false;
+  console.log(questionNumber.value);
 }
 
+// Verifica se todas as questões foram respondidas
 function checkAllQuestionsAnswered() {
   let allAnswered = true;
   for (let i = 0; i < 6; i++) {
     if (selected.value[i] === undefined) {
+      // Verifica se a resposta da questão i está indefinida
       allAnswered = false;
       break;
     }
@@ -72,66 +108,118 @@ function checkAllQuestionsAnswered() {
   allQuestionsAnswered.value = allAnswered;
 }
 
+// Exibe os resultados se todas as questões foram respondidas, caso contrário, abre o diálogo de confirmação
 function showResults() {
   checkAllQuestionsAnswered();
   if (!allQuestionsAnswered.value) {
-    openConfirmation();
+    // Se nem todas as questões foram respondidas
+    openConfirmation(); // Abre o diálogo de confirmação
   } else {
-    showResult.value = true;
-    showReview.value = true;
-    window.removeEventListener("mousemove", resetIdleTimer);
-    window.removeEventListener("keydown", resetIdleTimer);
-    clearTimeout(idleTimer);
+    endQuiz(); // Finaliza o questionário
   }
 }
 
+// Continua para os resultados após a confirmação no diálogo
 function continueConfirmation() {
   closeDialog();
-  showResult.value = true;
-  showReview.value = true;
-  window.removeEventListener("mousemove", resetIdleTimer);
-  window.removeEventListener("keydown", resetIdleTimer);
-  clearTimeout(idleTimer);
+  endQuiz();
 }
 
-const idleTime = ref(0);
-const maxIdleTime = 60000;
-const dialogVisible = ref(false);
-let idleTimer;
+// Esconde o menu de navegação
+function hiddenMenu() {
+  showMenu.value = false;
+}
 
+// Aplica o volume padrão ao abrir o diálogo
+watch(dialogVisible, (newVal) => {
+  if (newVal && audioPlayer.value) {
+    updateVolume();
+  }
+});
+
+// Aplica o volume padrão quando o elemento de áudio estiver pronto
+watch(audioPlayer, (newAudioPlayer) => {
+  if (newAudioPlayer) {
+    updateVolume();
+  }
+});
+// Função para reiniciar o temporizador de inatividade
 const resetIdleTimer = () => {
   idleTime.value = 0;
   clearTimeout(idleTimer);
   startIdleTimer();
 };
 
+// Função para iniciar o temporizador de inatividade
 const startIdleTimer = () => {
-  window.addEventListener("mousemove", resetIdleTimer);
+  window.addEventListener("mousemove", resetIdleTimer); // Adiciona ouvintes de evento para movimento do mouse e teclas
   window.addEventListener("keydown", resetIdleTimer);
   idleTimer = setTimeout(() => {
-    dialogVisible.value = true;
+    dialogVisible.value = true; // Exibe o diálogo se o usuário ficar inativo
+    if (audioPlayer.value) {
+      audioPlayer.value.play(); // Inicia a música de alerta
+    }
   }, maxIdleTime);
 };
 
+// Funções para controle de volume
+const increaseVolume = () => {
+  if (volume.value < 1) {
+    volume.value = Math.min(volume.value + 0.1, 1);
+  }
+  updateVolume();
+};
+const decreaseVolume = () => {
+  if (volume.value > 0) {
+    volume.value = Math.max(volume.value - 0.1, 0);
+  }
+  updateVolume();
+};
+
+const updateVolume = () => {
+  // Função para atualizar o volume do elemento de áudio
+  if (audioPlayer.value) {
+    audioPlayer.value.volume = volume.value;
+  }
+};
+
+// Função para obter as questões não respondidas
 const getUnansweredQuestions = () => {
   let unansweredQuestions = [];
   for (let i = 0; i < 6; i++) {
     if (selected.value[i] === undefined) {
-      unansweredQuestions.push(i + 1);
+      unansweredQuestions.push(i + 1); // Adiciona o número da questão (index + 1) ao array
     }
   }
   return unansweredQuestions;
 };
 
+// Função para ir para uma questão específica
 const goToQuestion = (question) => {
   questionNumber.value = question;
+  showMenu.value = true;
   closeDialog();
 };
+
+const handleClick = (index) => {
+  questionNumber.value = index + 1; // Define o questionNumber para o índice do item clicado + 1
+  showMenu.value = true;
+};
+
+// Array com os títulos das questões (para o menu de navegação)
+const items = ref([
+  { title: "Questão 1" },
+  { title: "Questão 2" },
+  { title: "Questão 3" },
+  { title: "Questão 4" },
+  { title: "Questão 5" },
+  { title: "Questão 6" },
+]);
 </script>
 
 <template>
   <div class="container">
-    <v-row v-if="questionNumber == 0" class="mt-0 mb-2">
+    <v-row v-if="questionNumber == 0">
       <v-col cols="12" class="next">
         <RouterLink to="introduction">Página Inicial</RouterLink>
         &nbsp;>&nbsp;
@@ -147,12 +235,73 @@ const goToQuestion = (question) => {
       </v-col>
     </v-row>
 
-    <v-row class="mt-0 mb-2">
-      <v-col cols="12" class="back">
-        Configuração &nbsp;>&nbsp;
-        <span @click="openDialog">Atualização da página</span>
+    <v-row v-if="showResult == false && quiz">
+      <v-col cols="12" class="next">
+        <template v-for="n in questionNumber">
+          <button
+            @click="questionNumber = n"
+            aria-label="Questão {{ n }}"
+            :class="{ 'active-question': n === questionNumber }"
+          >
+            Questão {{ n }}
+          </button>
+          <span v-if="n < questionNumber">&nbsp;>&nbsp;</span>
+        </template>
       </v-col>
     </v-row>
+
+    <v-row v-if="showResult == false && dialog == false && quiz && showMenu">
+      <v-col cols="12" class="back">
+        <button @click="hiddenMenu()">Pular menu e ir para questão</button>
+      </v-col>
+    </v-row>
+
+    <v-row class="mt-0 mb-2">
+      <v-col cols="12" class="back">
+        <v-menu
+          v-if="
+            dialog == false &&
+            showResult == false &&
+            showReview == false &&
+            showMenu
+          "
+        >
+          <template v-slot:activator="{ props }">
+            <v-btn color="primary" v-bind="props"> Configurações </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="openDialog">
+              Atualização de página
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <v-menu
+          v-if="
+            showResult == false &&
+            questionNumber != 0 &&
+            dialog == false &&
+            showMenu
+          "
+        >
+          <template v-slot:activator="{ props }">
+            <v-btn color="primary" v-bind="props" class="ml-4">
+              Menu de questões
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, index) in items"
+              :key="item.title"
+              @click="handleClick(index)"
+            >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-col>
+    </v-row>
+
     <v-container v-if="dialogNumber == 1 && dialog == true">
       <h2>Configuração de atualização da página</h2>
       <v-spacer></v-spacer>
@@ -202,16 +351,33 @@ const goToQuestion = (question) => {
 
     <v-dialog v-model="dialogVisible" max-width="500px">
       <v-card>
-        <v-card-title>
-          Aviso de Inatividade
-          <v-spacer></v-spacer>
-        </v-card-title>
-        <v-card-text>
-          Você ainda está aí? Se não estiver, fecharemos esta sessão em 20
-          segundos.
-          <v-btn @click="dialogVisible = false" class="dialog-btn"
-            >Continuar respondendo a questão</v-btn
-          >
+        <v-card-title>Aviso de Inatividade</v-card-title>
+        <v-card-text class="dialog-content">
+          <p>
+            Você ainda está aí? Se não estiver, fecharemos esta sessão em 20
+            segundos.
+          </p>
+          <v-btn @click="dialogVisible = false" class="continue-button">
+            Continuar respondendo a questão
+          </v-btn>
+          <div v-if="dialogVisible">
+            <audio ref="audioPlayer" controls autoplay style="display: none">
+              <source
+                src="/home/kikey/guidelines-project/src/assets/lofi.mp3"
+                type="audio/mpeg"
+              />
+              Seu navegador não suporta o elemento de áudio.
+            </audio>
+            <div v-if="dialogVisible" class="volume-controls">
+              <button @click="decreaseVolume" aria-label="Diminuir volume">
+                <v-icon>mdi-volume-minus</v-icon>
+              </button>
+              <span aria-hidden="true">{{ volume.toFixed(2) }}</span>
+              <button @click="increaseVolume" aria-label="Aumentar volume">
+                <v-icon>mdi-volume-plus</v-icon>
+              </button>
+            </div>
+          </div>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -426,26 +592,70 @@ const goToQuestion = (question) => {
           <v-btn @click="previousQuestion">Questão anterior</v-btn>
         </v-col>
         <v-col cols="6" class="next">
-          <v-btn @click="showResults">Enviar Respostas</v-btn>
+          <v-btn @click="nextQuestion">Próxima questão</v-btn>
         </v-col>
       </v-row>
     </v-container>
     <v-container
       v-if="showResult == false && questionNumber == 7 && dialog == false"
     >
-      <p class="hidden-description">Questão objetiva com uma única opção</p>
+      <p class="hidden-description">
+        Questão discursiva - Desenvolva uma resposta detalhada para a seguinte
+        pergunta:
+      </p>
       <p>
         7. Quais as maiores dificuldades que você encontra para entender imagens
         muito complexas ou com muitas informações?
       </p>
-      <v-row rows="12"> </v-row>
+      <v-row class="mt-0" rows="12">
+        <v-col cols="4" class="input-col">
+          <input
+            type="file"
+            ref="audioInput"
+            style="display: none"
+            accept="audio/*"
+          />
+          <v-btn
+            prepend-icon="mdi-microphone"
+            color="indigo"
+            @click="$refs.audioInput.click()"
+          >
+            Inserir áudio
+          </v-btn>
+        </v-col>
+        <v-col cols="4" class="input-col">
+          <input
+            type="file"
+            ref="videoInput"
+            style="display: none"
+            accept="video/*"
+          />
+          <v-btn
+            prepend-icon="mdi-video"
+            color="indigo"
+            @click="$refs.videoInput.click()"
+          >
+            Inserir vídeo
+          </v-btn>
+        </v-col>
+        <v-col cols="4" class="input-col">
+          <input type="file" ref="textInput" style="display: none" />
+          <v-btn
+            prepend-icon="mdi-keyboard"
+            color="indigo"
+            @click="$refs.textInput.click()"
+          >
+            Inserir texto
+          </v-btn>
+        </v-col>
+      </v-row>
       <v-container v-if="showReview == true" class="review">
         <ReviewSix />
         <v-btn @click="continueConfirmation"
           >Voltar para página de resultados</v-btn
         >
       </v-container>
-      <v-row class="mt-0" v-if="showReview == false">
+      <v-row class="mt-5" v-if="showReview == false">
         <v-col cols="6" class="back">
           <v-btn @click="previousQuestion">Questão anterior</v-btn>
         </v-col>
@@ -549,6 +759,40 @@ const goToQuestion = (question) => {
 </template>
 
 <style scoped>
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center; /* Centraliza horizontalmente */
+  margin-top: 16px; /* Espaçamento superior */
+}
+
+.volume-controls button {
+  background-color: #f0f0f0; /* Cor de fundo neutra */
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Efeito de transição suave */
+}
+
+.volume-controls button:hover {
+  background-color: #e0e0e0; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+.dialog-content {
+  text-align: center; /* Centraliza o texto */
+}
+
+.continue-button {
+  display: block; /* Torna o botão um elemento de bloco */
+  margin: 16px auto; /* Centraliza horizontalmente e adiciona margem superior e inferior */
+}
+
+.volume-controls span {
+  font-size: 14px;
+}
+
 .li {
   margin-bottom: 20px;
 }
