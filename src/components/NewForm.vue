@@ -310,6 +310,7 @@ const items = ref([
     </v-row>
 
     <div>
+        <h5>Barra de Progresso</h5>
         <v-progress-linear
         v-model=progressNumber
         color="blue-grey"
