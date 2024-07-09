@@ -18,6 +18,7 @@ let dialogNumber = ref(0); // Número do diálogo aberto (1 para configurações
 let quiz = ref(false); // Indica se o questionário está em andamento
 let showMenu = ref(true); // Controla a exibição do menu de navegação
 const dialog = ref(false); // Controla a exibição do diálogo (modal)
+let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
@@ -57,12 +58,14 @@ function resetQuiz() {
   showResult.value = false;
   showReview.value = false;
   questionNumber.value = 0;
+  progressNumber.value = 0;
   showMenu.value = true;
 }
 
 // Inicia o questionário
 function startQuiz() {
   questionNumber.value = 1; // Vai para a primeira questão
+  progressNumber.value = 0;
   quiz = true;
   startIdleTimer(); // Inicia o temporizador de inatividade
 }
@@ -76,14 +79,15 @@ function endQuiz() {
   window.removeEventListener("keydown", resetIdleTimer);
   clearTimeout(idleTimer); // Limpa o temporizador
 }
-
 // Navegação entre as questões
 function nextQuestion() {
+  checkAllQuestionsAnswered();
   questionNumber.value++;
   showMenu.value = true;
 }
 
 function previousQuestion() {
+  checkAllQuestionsAnswered();
   questionNumber.value--;
   showMenu.value = true;
 }
@@ -98,11 +102,13 @@ function reviewQuestion(question) {
 // Verifica se todas as questões foram respondidas
 function checkAllQuestionsAnswered() {
   let allAnswered = true;
-  for (let i = 0; i < 6; i++) {
+  progressNumber.value = 0;
+  for (let i = 0; i < 7; i++) {
     if (selected.value[i] === undefined) {
       // Verifica se a resposta da questão i está indefinida
       allAnswered = false;
-      break;
+    } else {
+      progressNumber.value = progressNumber.value + 14.28;
     }
   }
   allQuestionsAnswered.value = allAnswered;
@@ -215,6 +221,7 @@ const items = ref([
   { title: "Questão 5" },
   { title: "Questão 6" },
 ]);
+
 </script>
 
 <template>
@@ -301,6 +308,16 @@ const items = ref([
         </v-menu>
       </v-col>
     </v-row>
+
+    <div>
+        <v-progress-linear
+        v-model=progressNumber
+        color="blue-grey"
+        height="25"
+      >
+      <strong>{{ Math.ceil(progressNumber) }}%</strong>
+      </v-progress-linear>
+    </div>&nbsp;&nbsp;
 
     <v-container v-if="dialogNumber == 1 && dialog == true">
       <h2>Configuração de atualização da página</h2>
@@ -645,6 +662,13 @@ const items = ref([
             Inserir texto
           </v-btn>
         </v-col>
+        <v-row rows="12">
+        <v-radio-group inline v-model="selected[6]" :disabled="showReview">
+          <v-col cols="6">
+            <v-radio label="Resposta enviada" :value="true"></v-radio>
+          </v-col>
+        </v-radio-group>
+      </v-row>
       </v-row>
       <v-container v-if="showReview == true" class="review">
         <ReviewSix />
