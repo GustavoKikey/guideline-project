@@ -103,7 +103,7 @@ function reviewQuestion(question) {
 function checkAllQuestionsAnswered() {
   let allAnswered = true;
   progressNumber.value = 0;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 6; i++) {
     if (selected.value[i] === undefined) {
       // Verifica se a resposta da questão i está indefinida
       allAnswered = false;
@@ -663,13 +663,6 @@ const items = ref([
             Inserir texto
           </v-btn>
         </v-col>
-        <v-row rows="12">
-        <v-radio-group inline v-model="selected[6]" :disabled="showReview">
-          <v-col cols="6">
-            <v-radio label="Resposta enviada" :value="true"></v-radio>
-          </v-col>
-        </v-radio-group>
-      </v-row>
       </v-row>
       <v-container v-if="showReview == true" class="review">
         <ReviewSix />
