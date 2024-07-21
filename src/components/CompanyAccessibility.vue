@@ -52,11 +52,11 @@ import { RouterLink, RouterView } from "vue-router";
         parte do cotidiano dessas pessoas.
       </p>
       <v-table>
+        <caption>
+          Tabela Tipos de deficiência e taxa de
+          participação no mercado de trabalho
+        </caption>
         <thead>
-          <p class="hidden">
-            Descrição da tabela: Tabela Tipos de deficiência e taxa de
-            participação no mercado de trabalho
-          </p>
           <tr>
             <th class="text-left">Deficiência</th>
             <th class="text-left">Participação no mercado de trabalho</th>

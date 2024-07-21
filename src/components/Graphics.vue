@@ -10,6 +10,7 @@ import { RouterLink } from "vue-router";
       </v-col>
     </v-row>
     <v-container>
+      <h1>Gráficos</h1>
       <p>
         Embora a acessibilidade seja muito importante, ainda é necessário muito
         estudo sobre o tema e sensibilizar as pessoas. Por exemplo, o gráfico

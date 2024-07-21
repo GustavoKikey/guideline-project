@@ -11,7 +11,9 @@ import { RouterLink } from "vue-router";
         relacionadas com a acessibilidade, ensino inclusivo e acessibilidade em
         empresas.
       </p>
-      <v-img :width="100" src="/glossário.png"></v-img>
+      <v-img :width="100"         
+        alt="Ilustração utilizada para sinalizar o início da sessão de glossário. Consta como uma lupa sobre um livro de capa vermelha aberto."
+        src="/glossário.png"></v-img>
       <RouterLink to="accessibility"
         ><v-btn>Pular glossário e ir para o conteúdo</v-btn></RouterLink
       >

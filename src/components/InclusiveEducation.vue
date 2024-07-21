@@ -43,8 +43,10 @@ import { RouterLink, RouterView } from "vue-router";
         a cor associada aos níveis de cada atrito.
       </p>
       <v-table>
+        <caption>
+        Tabela Mistura de cores
+        </caption>
         <thead>
-          <p class="hidden">Descrição da tabela: Tabela Mistura de cores</p>
           <tr>
             <th class="text-left">Cor 1</th>
             <th class="text-left">Operação</th>
@@ -83,11 +85,11 @@ import { RouterLink, RouterView } from "vue-router";
         tecnologias e o como elas promovem a inclusão no ensino.
       </p>
       <v-table>
+        <caption>
+          Tabela Exemplos de tecnologias assistivas
+          utilizadas por cegos
+        </caption>
         <thead>
-          <p class="hidden">
-            Descrição da tabela: Tabela Exemplos de tecnologias assistivas
-            utilizadas por cegos
-          </p>
           <tr>
             <th><b>Tecnologias Assistivas</b></th>
             <th><b>Descrição</b></th>
