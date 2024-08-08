@@ -6,11 +6,9 @@ import { RouterLink, RouterView } from "vue-router";
   <div class="container">
     <center><v-container>
       <h1>Vídeo com audiodescrição</h1>
-
-      <p> Este vídeo viralizou na internet pela sua delicadeza e simplicidade. Uma boa reflexão sobre ações e recursos, sobre afeto e criatividade, que podem transformar a escola em um lugar que acolhe e ensina a todos os alunos. </p>
       
       <center><v-row rows="12">
-        <video width="520" alt="Vídeo reflexivo sobre educação inclusiva com audiodescrição." controls>
+        <video width="520" alt="Este vídeo viralizou na internet pela sua delicadeza e simplicidade. Uma boa reflexão sobre ações e recursos, sobre afeto e criatividade, que podem transformar a escola em um lugar que acolhe e ensina a todos os alunos." controls>
             <source src="../assets/video.mp4" type="video/mp4">
             Your browser does not support the video tag
         </video>
