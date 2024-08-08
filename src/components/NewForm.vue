@@ -402,10 +402,9 @@ const items = ref([
     >
       <h1>Questionário</h1>
       <p>
-        Esse questionário contém 6 perguntas objetivas baseadas nos conteúdos
+        Esse questionário contém 7 perguntas baseadas nos conteúdos
         apresentados anteriormente.
       </p>
-      <p>Responda as questões a seguir com verdadeiro ou falso.</p>
       <v-btn @click="startQuiz" v-if="showReview == false"
         >Iniciar questionário</v-btn
       >
