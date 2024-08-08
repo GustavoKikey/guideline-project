@@ -22,12 +22,12 @@ let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
-const maxIdleTime = 120000;
+const maxIdleTime = 20000;
 const dialogVisible = ref(false);
 let idleTimer;
 
 // Variáveis para controle de volume da música
-const volume = ref(0.2); // Volume inicial da música (20%)
+const volume = ref(0.5); // Volume inicial da música (20%)
 const audioPlayer = ref(null); // Referência para o elemento de áudio
 
 // Funções para controlar o diálogo (modal)
@@ -108,7 +108,7 @@ function checkAllQuestionsAnswered() {
       // Verifica se a resposta da questão i está indefinida
       allAnswered = false;
     } else {
-      progressNumber.value = progressNumber.value + 14.28;
+      progressNumber.value = progressNumber.value + 16.66;
     }
   }
   allQuestionsAnswered.value = allAnswered;
@@ -158,8 +158,8 @@ const resetIdleTimer = () => {
 
 // Função para iniciar o temporizador de inatividade
 const startIdleTimer = () => {
-  window.addEventListener("mousemove", resetIdleTimer); // Adiciona ouvintes de evento para movimento do mouse e teclas
-  window.addEventListener("keydown", resetIdleTimer);
+  //window.addEventListener("mousemove", resetIdleTimer); // Adiciona ouvintes de evento para movimento do mouse e teclas
+  //window.addEventListener("keydown", resetIdleTimer);
   idleTimer = setTimeout(() => {
     dialogVisible.value = true; // Exibe o diálogo se o usuário ficar inativo
     if (audioPlayer.value) {
@@ -767,7 +767,7 @@ const items = ref([
         <v-btn @click="resetQuiz">Tentar Novamente</v-btn>
       </v-col>
       <v-col v-if="showResult" cols="6" class="next">
-        <RouterLink to="end"><v-btn>Próxima página</v-btn></RouterLink>
+        <RouterLink to="video"><v-btn>Próxima página</v-btn></RouterLink>
       </v-col>
     </v-row>
   </div>

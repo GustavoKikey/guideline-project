@@ -49,6 +49,11 @@ const router = createRouter({
       component: () => import("../components/NewForm.vue"),
     },
     {
+      path: "/video",
+      name: "video",
+      component: () => import("../components/Video.vue"),
+    },
+    {
       path: "/end",
       name: "end",
       component: () => import("../components/End.vue"),
