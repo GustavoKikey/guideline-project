@@ -22,7 +22,7 @@ let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
-const maxIdleTime = 20000;
+const maxIdleTime = 2000;
 const dialogVisible = ref(false);
 let idleTimer;
 
