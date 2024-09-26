@@ -5,7 +5,7 @@ import { RouterLink } from "vue-router";
 <template>
   <div class="container">
     <v-container>
-      <h1>Glossário:</h1>
+      <h1>Glossário</h1>
       <p>
         Eficácia é o que cumpre perfeitamente determinada tarefa ou função,
         atingindo o objetivo proposto. A eficácia está diretamente ligada ao
