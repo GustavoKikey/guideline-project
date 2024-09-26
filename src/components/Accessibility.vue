@@ -19,13 +19,13 @@ import { RouterLink } from "vue-router";
         requisito deve ser obedecido quando um produto ou sistema é usado por
         pessoas com deficiências específicas para atingir seus objetivos de
         forma
-        <RouterLink to="introduction"
+        <RouterLink to="glossary"
           ><a href="https://emag.governoeletronico.gov.br/"
             >eficaz</a
           ></RouterLink
         >
         e com
-        <RouterLink to="introduction"
+        <RouterLink to="glossary"
           ><a href="https://emag.governoeletronico.gov.br/"
             >eficiência</a
           ></RouterLink

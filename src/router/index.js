@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import("../components/Introduction.vue"),
     },
     {
+      path: "/glossary",
+      name: "glossary",
+      component: () => import("../components/Glossary.vue"),
+    },
+    {
       path: "/accessibility",
       name: "accessibility",
       component: () => import("../components/Accessibility.vue"),
