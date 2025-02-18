@@ -11,14 +11,10 @@ const router = useRouter();
   <div class="container">
     <v-container>
       <h1>Curso sobre conceitos básicos de acessibilidade</h1>
-      <p>Em qual ponto você deseja iniciar o curso? Selecione dentre as duas opções abaixo.</p>
+      &nbsp;&nbsp;
         <v-row align="center" justify="center">
           <v-col cols="auto">
-            <RouterLink to="Introduction"><v-btn>Conteúdo</v-btn></RouterLink>
-          </v-col>
-
-          <v-col cols="auto">
-            <RouterLink to="Form"><v-btn>Questionário</v-btn></RouterLink>
+            <RouterLink to="Introduction"><v-btn>Iniciar curso</v-btn></RouterLink>
           </v-col>
 
         </v-row>

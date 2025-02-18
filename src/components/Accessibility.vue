@@ -45,6 +45,26 @@ import { RouterLink } from "vue-router";
         Ela está sentada e sobre a mesa possui um livro em braille, que a personagem está lendo. Ao seu lado há um cachorro amarelo, que é o seu cão guia."
         src="/maurc3adcio-de-sousa-5.jpg"
       ></v-img>
+
+      <v-img :width="100"         
+        alt="Ilustração utilizada para sinalizar o início da sessão de glossário. Consta como uma lupa sobre um livro de capa vermelha aberto."
+        src="/glossário.png"></v-img>
+      <RouterLink to="accessibility"
+        ><v-btn>Pular dicionário e ir para o conteúdo</v-btn></RouterLink
+      >
+      &nbsp;&nbsp;
+      <h2>Dicionário:</h2>
+      <p>
+        Eficácia é o que cumpre perfeitamente determinada tarefa ou função,
+        atingindo o objetivo proposto. A eficácia está diretamente ligada ao
+        resultado.
+      </p>
+      <p>
+        Eficiente é o que executa uma tarefa com qualidade, competência,
+        excelência, com nenhum ou com o mínimo de erros. A eficiência está
+        ligada ao modo de fazer uma tarefa.
+      </p>
+      
     </v-container>
 
     <v-row class="mt-0">

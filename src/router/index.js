@@ -68,6 +68,11 @@ const router = createRouter({
       name: "lawinformation",
       component: () => import("../components/LawInformation.vue"),
     },
+    {
+      path: "/supplementarymaterial",
+      name: "supplementarymaterial",
+      component: () => import("../components/SupplementaryMaterial.vue"),
+    },
   ],
 });
 

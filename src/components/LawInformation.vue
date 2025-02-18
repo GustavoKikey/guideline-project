@@ -10,7 +10,7 @@ import { RouterLink } from "vue-router";
         <a
           aria-describedby="descricao-link"
           href="https://www.planalto.gov.br/ccivil_03/leis/l10098.htm"
-          >https://www.planalto.gov.br/ccivil_03/leis/l10098.htm</a
+          >Lei sobre acessibilidade</a
         >
       </p>
       <p class="descricao-link">
@@ -22,7 +22,7 @@ import { RouterLink } from "vue-router";
         <a
           aria-describedby="descricao-link"
           href="https://www.planalto.gov.br/ccivil_03/_Ato2023-2026/2023/Decreto/D11793.htm#art8"
-          >https://www.planalto.gov.br/ccivil_03/_Ato2023-2026/2023/Decreto/D11793.htm#art8</a
+          >Direitos da pessoa com deficiência</a
         >
       </p>
       <p class="descricao-link">

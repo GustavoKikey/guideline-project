@@ -22,7 +22,7 @@ let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
-const maxIdleTime = 2000;
+const maxIdleTime = 4000;
 const dialogVisible = ref(false);
 let idleTimer;
 
@@ -133,7 +133,12 @@ function continueConfirmation() {
 
 // Esconde o menu de navegação
 function hiddenMenu() {
-  showMenu.value = false;
+  if (document.getElementById("checkbox").checked){
+    showMenu.value = false;
+  }
+  else{
+    showMenu.value = true;
+  }
 }
 
 // Aplica o volume padrão ao abrir o diálogo
@@ -229,16 +234,18 @@ const items = ref([
     <v-row v-if="questionNumber == 0">
       <v-col cols="12" class="next">
         <RouterLink to="introduction">Página Inicial</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibility">Acessibilidade</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="usability">Usabilidade</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibilitymodel">eMAG</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="inclusiveeducation">Ensino Inclusivo</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="companyaccessibility">Empresas</RouterLink>
+        &nbsp;&nbsp;
+        <RouterLink to="supplementarymaterial">Material Complementar</RouterLink>
       </v-col>
     </v-row>
 
@@ -254,12 +261,6 @@ const items = ref([
           </button>
           <span v-if="n < questionNumber">&nbsp;>&nbsp;</span>
         </template>
-      </v-col>
-    </v-row>
-
-    <v-row v-if="showResult == false && dialog == false && quiz && showMenu">
-      <v-col cols="12" class="back">
-        <button @click="hiddenMenu()">Pular menu e ir para questão</button>
       </v-col>
     </v-row>
 
@@ -379,10 +380,6 @@ const items = ref([
             Continuar respondendo a questão
           </v-btn>
           <div v-if="dialogVisible">
-            <audio ref="audioPlayer" controls autoplay style="display: none">
-              <source src="/src/assets/lofi.mp3" type="audio/mpeg" />
-              Seu navegador não suporta o elemento de áudio.
-            </audio>
             <div v-if="dialogVisible" class="volume-controls">
               <button @click="decreaseVolume" aria-label="Diminuir volume">
                 <v-icon>mdi-volume-minus</v-icon>
@@ -403,8 +400,13 @@ const items = ref([
       <h1>Questionário</h1>
       <p>
         Esse questionário contém 7 perguntas baseadas nos conteúdos
-        apresentados anteriormente.
+        apresentados anteriormente. Antes de iniciar, informe se você gostaria 
+        de pular o menu de configurações em todas 
+        as questões do questionário:
       </p>
+
+      <v-checkbox label="Pular menu de questões" id="checkbox" @click="hiddenMenu()"></v-checkbox>
+
       <v-btn @click="startQuiz" v-if="showReview == false"
         >Iniciar questionário</v-btn
       >

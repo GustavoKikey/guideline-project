@@ -18,35 +18,45 @@ import { RouterLink } from "vue-router";
         participaram de alguns seminários sobre acessibilidade em uma empresa e
         pessoas que não participaram.
       </p>
+      <h2>Impacto do seminário sobre acessibilidade e inclusão.</h2>
       <v-img
         :width="800"
         alt="Descrição do gráfico de barras: Este é um gráfico de barras horizontais. 
-          Seu título é impacto do seminário sobre acessibilidade e inclusão. A legenda do eixo y é perguntas realizadas. 
-          A legenda do eixo x é pontuação. Os valores das barras vermelhas, que representam a pontuação sem seminário,  
-          variam entre 1,5 e 3,3. Os valores das barras azuis, que representam a pontuação com seminário,  variam entre 2,6 e 3,4. 
-          A primeira barra é a pergunta conheço o significado de acessibilidade e inclusão, no geral e possui os valores 3,4 com seminário e 3,3 sem seminário. 
-          A segunda barra é a pergunta conheço o que está sendo falado na minha área sobre acessibilidade e inclusão e possui os valores 2,9 com seminário e 1,9 sem seminário. 
-          A terceira barra é a pergunta consigo identificar em quais processos da minha área existem oportunidades sobre acessibilidade e 
-          inclusão e possui os valores 3,1 com seminário e 2,3 sem seminário. A quarta barra é a pergunta consigo promover mudanças 
-          para tornar os processos da minha área mais acessíveis e inclusivos e possui os valores 2,9 com seminário e 2,2 sem seminário.  
-          A quinta barra é a pergunta costumo ouvir a pauta de acessibilidade e inclusão nas reuniões da minha área e possui os valores 2,6 com seminário e 1,7 sem seminário. 
-          A sexta barra é a pergunta Minha área já promoveu mudanças para melhorar a acessibilidade e inclusão e possui os valores 2,7 com seminário e 1,5 sem seminário."
+          Seu título é impacto do seminário sobre acessibilidade e inclusão."
         src="/grafico_barra.png"
       ></v-img>
+      <p class="hidden">A legenda do eixo y é perguntas realizadas.</p>
+      <p class="hidden">A legenda do eixo x é pontuação.</p>
+      <p class="hidden">Os valores das barras vermelhas, que representam a pontuação sem seminário,  
+          variam entre 1,5 e 3,3.</p>
+      <p class="hidden">Os valores das barras azuis, que representam a pontuação com seminário, variam entre 2,6 e 3,4.</p>
+      <p class="hidden">A primeira barra é a pergunta conheço o significado de acessibilidade e inclusão, no geral e possui os valores 3,4 com seminário e 3,3 sem seminário.</p> 
+      <p class="hidden">A segunda barra é a pergunta conheço o que está sendo falado na minha área sobre acessibilidade e inclusão e possui os valores 2,9 com seminário e 1,9 sem seminário.</p>
+      <p class="hidden">A terceira barra é a pergunta consigo identificar em quais processos da minha área existem oportunidades sobre acessibilidade e 
+          inclusão e possui os valores 3,1 com seminário e 2,3 sem seminário.</p>
+      <p class="hidden">A quarta barra é a pergunta consigo promover mudanças para tornar os processos da minha área mais acessíveis e inclusivos e possui os valores 2,9 com seminário e 2,2 sem seminário.</p>
+      <p class="hidden">A quinta barra é a pergunta costumo ouvir a pauta de acessibilidade e inclusão nas reuniões da minha área e possui os valores 2,6 com seminário e 1,7 sem seminário.</p> 
+      <p class="hidden">A sexta barra é a pergunta Minha área já promoveu mudanças para melhorar a acessibilidade e inclusão e possui os valores 2,7 com seminário e 1,5 sem seminário."</p>
       <p>
         A acessibilidade também deve ser considerada no ambiente de trabalho.
         Dessa forma, o gráfico abaixo apresenta o quantitativo de pessoas por
         tipo de deficiência que trabalham na câmara dos deputados.
       </p>
+      <h2>Quantitativo de pessoas com deficiência que trabalham na câmara dos deputados.</h2>
       <v-img
         :width="600"
         alt="Descrição do gráfico de pizza: Este é um gráfico de setores ou gráfico de pizza. 
-        Seu título é quantitativo de pessoas com deficiência que trabalham na câmara dos deputados. O valor da fatia azul, 
-        que representa a deficiência física, é 44%. O valor da fatia verde, que representa a deficiência visual, é 27%. O valor da fatia amarela, 
-        que representa a deficiência auditiva, é 21%. O valor da fatia laranja, que representa a deficiência intelectual, é 7%. O valor da fatia rosa, 
-        que representa a deficiência múltipla, é 1%."
+        Seu título é quantitativo de pessoas com deficiência que trabalham na câmara dos deputados." 
         src="/grafico_pizza.png"
       ></v-img>
+      <p class="hidden">"O valor da fatia azul, 
+        que representa a deficiência física, é 44%.</p>
+        <p class="hidden">O valor da fatia verde, que representa a deficiência visual, é 27%.</p>
+        <p class="hidden">O valor da fatia amarela, 
+        que representa a deficiência auditiva, é 21%.</p>
+        <p class="hidden">O valor da fatia laranja, que representa a deficiência intelectual, é 7%.</p>
+        <p class="hidden">O valor da fatia rosa, 
+        que representa a deficiência múltipla, é 1%."</p>
     </v-container>
 
     <v-row class="mt-0">
@@ -62,4 +72,15 @@ import { RouterLink } from "vue-router";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.hidden{
+  clip: rect(1px 1px 1px 1px); /* IE 6/7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+</style>

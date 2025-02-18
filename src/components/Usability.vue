@@ -7,14 +7,14 @@ import { RouterLink, RouterView } from "vue-router";
     <v-row class="mt-0">
       <v-col cols="6" class="back"> </v-col>
       <v-col cols="6" class="next">
-        <RouterLink to="lawinformation">Ajuda</RouterLink>
+        <RouterLink to="lawinformation">Clique aqui para conhecer mais sobre legislação</RouterLink>
       </v-col>
     </v-row>
     <v-row class="mt-0 mb-2">
       <v-col cols="6" class="back"> </v-col>
       <v-col cols="6" class="next">
         <RouterLink to="introduction">Página Inicial</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibility">Acessibilidade</RouterLink>
       </v-col>
     </v-row>

@@ -7,9 +7,9 @@ import { RouterLink, RouterView } from "vue-router";
     <v-row class="mt-0 mb-2">
       <v-col cols="12" class="next">
         <RouterLink to="introduction">Página Inicial</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibility">Acessibilidade</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="usability">Usabilidade</RouterLink>
       </v-col>
     </v-row>
@@ -39,23 +39,10 @@ import { RouterLink, RouterView } from "vue-router";
         brasileiro, porém o eMAG não exclui qualquer boa prática de
         acessibilidade do WCAG.
       </p>
-      <p>
-        Caso queira conhecer mais sobre o eMAG, acesse o link a seguir:
-        <a
-          aria-describedby="descricao-link"
-          href="https://emag.governoeletronico.gov.br/"
-          >https://emag.governoeletronico.gov.br/</a
-        >
-      </p>
       <p class="descricao-link">
         O conteúdo do link anterior aborda o processo para desenvolver um site
         acessível, recomendações de acessibilidade e práticas desaconselhadas"
       </p>
-      <a
-        aria-describedby="descricao-link"
-        href="https://emag.governoeletronico.gov.br/"
-        >https://emag.governoeletronico.gov.br/</a
-      >
       <p class="descricao-link">
         Modelo de Acessibilidade em Governo Eletrônico
       </p>

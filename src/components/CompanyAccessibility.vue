@@ -7,13 +7,13 @@ import { RouterLink, RouterView } from "vue-router";
     <v-row class="mt-0 mb-2">
       <v-col cols="12" class="next">
         <RouterLink to="introduction">Página Inicial</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibility">Acessibilidade</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="usability">Usabilidade</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="accessibilitymodel">eMAG</RouterLink>
-        &nbsp;>&nbsp;
+        &nbsp;&nbsp;
         <RouterLink to="inclusiveeducation">Ensino Inclusivo</RouterLink>
       </v-col>
     </v-row>
@@ -53,7 +53,7 @@ import { RouterLink, RouterView } from "vue-router";
       </p>
       <v-table>
         <caption>
-          Tabela Tipos de deficiência e taxa de
+          Título: Tabela Tipos de deficiência e taxa de
           participação no mercado de trabalho
         </caption>
         <thead>
@@ -77,7 +77,7 @@ import { RouterLink, RouterView } from "vue-router";
         >
       </v-col>
       <v-col cols="6" class="next">
-        <RouterLink to="form"><v-btn>Próxima página</v-btn></RouterLink>
+        <RouterLink to="supplementarymaterial"><v-btn>Próxima página</v-btn></RouterLink>
       </v-col>
     </v-row>
   </div>
