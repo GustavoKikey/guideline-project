@@ -49,8 +49,8 @@ import { RouterLink } from "vue-router";
       <v-img :width="100"         
         alt="Ilustração utilizada para sinalizar o início da sessão de glossário. Consta como uma lupa sobre um livro de capa vermelha aberto."
         src="/glossário.png"></v-img>
-      <RouterLink to="accessibility"
-        ><v-btn>Pular dicionário e ir para o conteúdo</v-btn></RouterLink
+      <RouterLink to="graphics"
+        ><v-btn>Pular dicionário e ir para próxima página</v-btn></RouterLink
       >
       &nbsp;&nbsp;
       <h2>Dicionário:</h2>
