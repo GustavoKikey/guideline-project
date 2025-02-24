@@ -22,7 +22,7 @@ let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
-const maxIdleTime = 4000;
+const maxIdleTime = 20000;
 const dialogVisible = ref(false);
 let idleTimer;
 
@@ -83,13 +83,23 @@ function endQuiz() {
 function nextQuestion() {
   checkAllQuestionsAnswered();
   questionNumber.value++;
-  showMenu.value = true;
+  if (document.getElementById("checkbox").checked){
+    showMenu.value = false;
+  }
+  else{
+    showMenu.value = true;
+  }
 }
 
 function previousQuestion() {
   checkAllQuestionsAnswered();
   questionNumber.value--;
-  showMenu.value = true;
+    if (document.getElementById("checkbox").checked){
+    showMenu.value = false;
+  }
+  else{
+    showMenu.value = true;
+  }
 }
 
 // Função para exibir a revisão de uma questão específica
@@ -259,7 +269,7 @@ const items = ref([
           >
             Questão {{ n }}
           </button>
-          <span v-if="n < questionNumber">&nbsp;>&nbsp;</span>
+          <span v-if="n < questionNumber">&nbsp;&nbsp;</span>
         </template>
       </v-col>
     </v-row>
@@ -380,15 +390,6 @@ const items = ref([
             Continuar respondendo a questão
           </v-btn>
           <div v-if="dialogVisible">
-            <div v-if="dialogVisible" class="volume-controls">
-              <button @click="decreaseVolume" aria-label="Diminuir volume">
-                <v-icon>mdi-volume-minus</v-icon>
-              </button>
-              <span aria-hidden="true">{{ volume.toFixed(2) }}</span>
-              <button @click="increaseVolume" aria-label="Aumentar volume">
-                <v-icon>mdi-volume-plus</v-icon>
-              </button>
-            </div>
           </div>
         </v-card-text>
       </v-card>
@@ -405,7 +406,7 @@ const items = ref([
         as questões do questionário:
       </p>
 
-      <v-checkbox label="Pular menu de questões" id="checkbox" @click="hiddenMenu()"></v-checkbox>
+      <v-checkbox label="Pular menu em todas as questões" id="checkbox" @click="hiddenMenu()"></v-checkbox>
 
       <v-btn @click="startQuiz" v-if="showReview == false"
         >Iniciar questionário</v-btn
@@ -760,7 +761,7 @@ const items = ref([
         cols="6"
         class="back"
       >
-        <RouterLink to="companyaccessibility"
+        <RouterLink to="supplementarymaterial"
           ><v-btn>Página anterior</v-btn></RouterLink
         >
       </v-col>

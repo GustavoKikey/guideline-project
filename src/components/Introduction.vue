@@ -8,13 +8,14 @@ import { RouterLink } from "vue-router";
       <h1>Conceitos básicos sobre acessibilidade</h1>
       <p>
         O texto apresentará cinco temas: 
-        <RouterLink to="accessibility">acessibilidade, </RouterLink>
-        <RouterLink to="usability">usabilidade, </RouterLink>
-        <RouterLink to="accessibilitymodel">usabilidade, leis
-          relacionadas com a acessibilidade, </RouterLink>
-        <RouterLink to="inclusiveeducation">ensino inclusivo, </RouterLink>
-        <RouterLink to="companyaccessibility"> e acessibilidade em empresas.</RouterLink>
+        <RouterLink to="accessibility">Acessibilidade, </RouterLink>
+        <RouterLink to="usability">Usabilidade, </RouterLink>
+        <RouterLink to="usability">Legislação, </RouterLink>
+        <RouterLink to="accessibilitymodel">Modelo de Acessibilidade em Governo Eletrônico, </RouterLink>
+        <RouterLink to="inclusiveeducation">Ensino Inclusivo, </RouterLink>
+        <RouterLink to="companyaccessibility"> e Acessibilidade em empresas.</RouterLink>
       </p>
+
 
       <RouterLink to="accessibility"><v-btn>Próxima página</v-btn></RouterLink>
     </v-container>

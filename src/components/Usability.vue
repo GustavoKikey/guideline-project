@@ -6,9 +6,6 @@ import { RouterLink, RouterView } from "vue-router";
   <div class="container">
     <v-row class="mt-0">
       <v-col cols="6" class="back"> </v-col>
-      <v-col cols="6" class="next">
-        <RouterLink to="lawinformation">Clique aqui para conhecer mais sobre legislação</RouterLink>
-      </v-col>
     </v-row>
     <v-row class="mt-0 mb-2">
       <v-col cols="6" class="back"> </v-col>
@@ -41,6 +38,7 @@ import { RouterLink, RouterView } from "vue-router";
         práticas, processos, métodos e serviços de tecnologia assistiva que
         maximizem sua autonomia, mobilidade pessoal e qualidade de vida.
       </p>
+      <RouterLink to="lawinformation">Clique aqui para conhecer mais sobre legislação</RouterLink>
     </v-container>
     <v-row class="mt-0">
       <v-col cols="6" class="back">
