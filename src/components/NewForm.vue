@@ -22,7 +22,7 @@ let progressNumber = ref(0);
 
 // Variáveis para controle do temporizador de inatividade e do diálogo de aviso
 const idleTime = ref(0);
-const maxIdleTime = 20000;
+const maxIdleTime = 3000;
 const dialogVisible = ref(false);
 let idleTimer;
 
@@ -383,7 +383,7 @@ const items = ref([
         <v-card-title>Aviso de Inatividade</v-card-title>
         <v-card-text class="dialog-content">
           <p>
-            Você ainda está aí? Se não estiver, fecharemos esta sessão em 20
+            Você ainda está aí? Se não estiver, fecharemos esta sessão em 40
             segundos.
           </p>
           <v-btn @click="dialogVisible = false" class="continue-button">
